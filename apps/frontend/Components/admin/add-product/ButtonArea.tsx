@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import Button from "@/Components/ui/Button";
 
 export default function ButtonArea() {
 
@@ -7,6 +7,6 @@ export default function ButtonArea() {
     }
 
     return <div className="w-full flex justify-center sm:justify-start">
-        <Button text="Submit" onClick={handleClick} />
+        <Button onClick={handleClick}>Submit</Button>
     </div>
 }

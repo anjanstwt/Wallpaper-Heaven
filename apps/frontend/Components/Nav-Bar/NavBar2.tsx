@@ -109,7 +109,7 @@ export default function Navbar2() {
                 >
                   {session ? (
                     <div className="p-4 space-y-3 min-w-[240px]">
-                      <div className="text-sm font-semibold text-gray-800">Hello, {session.user?.name || "User"}</div>
+                      <div className="text-sm font-semibold text-gray-800">Hello, {session.user?.email || "User"}</div>
                       <div className="flex gap-3">
                         <div
                           onClick={() => setAdminPanel(prev => !prev)}
@@ -208,7 +208,7 @@ export default function Navbar2() {
       {logoutPanel && (
         <div className="fixed inset-0 z-40 bg-black/50 flex items-center justify-center">
           <div className="bg-[#181818] text-white p-6 rounded-lg shadow-xl text-center space-y-4 w-[80%] max-w-[340px]">
-            <p className="text-xl pb-0.5 font-normal">Are you sure {session?.user?.name}?</p>
+            <p className="text-xl pb-0.5 font-normal">Are you sure {session?.user?.email}?</p>
             <div className="flex justify-center space-x-5">
               <button onClick={() => { setLogoutPanel(false); signOut({ callbackUrl: "/" }); }} className="px-4 py-2 bg-red-700 hover:bg-red-800 cursor-pointer text-white rounded-md">
                 Logout

@@ -1,7 +1,14 @@
-import { Product } from "@/app/collections/page";
 import Image from "next/image";
 import { useState } from "react";
 import { Maximize2, X } from "lucide-react";
+
+interface Product {
+    id: number;
+    name: string;
+    image: string;
+    color: string;
+    mrp: number;
+}
 
 export default function ProductGrid({
     products,

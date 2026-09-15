@@ -1,6 +1,6 @@
 "use client";
 
-import Carousel from "@/components/ui/carousel";
+import Carousel from "@/Components/ui/carousel";
 
 export function GiantSlider() {
   const slideData = [

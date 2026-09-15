@@ -7,7 +7,7 @@ interface TermSection {
     content: string;
 }
 
-export const TermsAndConditions = () => {
+const TermsAndConditions = () => {
     const termsData: TermSection[] = [
         {
             id: 1,

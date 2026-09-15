@@ -13,7 +13,7 @@ export default function Page() {
         <PhoneFilterTab />
         <div className="flex flex-col lg:flex-row justify-between gap-y-6 lg:gap-x-6 lg:pt-10" >
             <Filter />
-            <ObjectInventory />
+            <ObjectInventory products={[]} />
         </div>
     </div>
 }

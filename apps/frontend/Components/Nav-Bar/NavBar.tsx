@@ -1,5 +1,5 @@
 "use client";
-import { Navbar, NavBody, NavItems, NavbarLogo, NavbarButton } from "@/components/ui/resizable-navbar";
+import { Navbar, NavBody, NavItems, NavbarLogo, NavbarButton } from "@/Components/ui/resizable-navbar";
 import Image from "next/image";
 import BrandName from "../ui/Customs/BrandName";
 import homePage from "../../public/home.jpeg"

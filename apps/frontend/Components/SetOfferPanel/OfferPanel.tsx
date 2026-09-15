@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
-import DatePicker from "@/components/ui/DatePicker";
+import DatePicker from "@/Components/ui/DatePicker";
 import { useSession } from "next-auth/react";
 import { headers } from "next/headers";
 

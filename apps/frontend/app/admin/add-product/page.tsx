@@ -8,7 +8,7 @@ import ChooseProduct from "@/Components/admin/add-product/ChooseProduct";
 import SetDetails from "@/Components/admin/add-product/SetDetails";
 import SetTags from "@/Components/admin/add-product/SetTags";
 import UserPageNavbar from "@/Components/Nav-Bar/UserPageNavbar";
-import Button from "@/components/ui/Button";
+import Button from "@/Components/ui/Button";
 import { useAddProductStore } from "@/store/useAddProductStore";
 import { UPSERT_PRODUCT_URL } from "@/routes/routes";
 
