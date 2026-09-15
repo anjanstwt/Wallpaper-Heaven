@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { toast } from 'sonner';
 import { UPLOAD_IMAGE_URL } from '@/routes/routes';
 
-export async function handleUpload(file: File, token: string): Promise<string | undefined> {
+export async function handleUpload(file: File): Promise<string | undefined> {
     if (!file) return undefined;
 
     // Safari/Mac HEIC files often have no type — catch early
@@ -17,8 +17,7 @@ export async function handleUpload(file: File, token: string): Promise<string | 
     try {
         const { data } = await axios.post(
             UPLOAD_IMAGE_URL,
-            { fileType: file.type },
-            { headers: { Authorization: `Bearer ${token}` } }
+            { fileType: file.type }
         );
         uploadUrl = data.uploadUrl;
         publicUrl = data.publicUrl;

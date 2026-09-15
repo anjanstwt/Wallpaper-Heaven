@@ -1,7 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { ISODateString, type AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
-import jwt from "jsonwebtoken";
 
 export interface CustomSession {
   user?: CustomUser;
@@ -11,7 +10,6 @@ export interface CustomSession {
 export interface CustomUser {
   id: string;
   email?: string | null;
-  token?: string | null;
 }
 
 export const authOptions: AuthOptions = {
@@ -38,13 +36,7 @@ export const authOptions: AuthOptions = {
           return null;
         }
 
-        const token = jwt.sign(
-          { id: "admin", email: adminEmail },
-          process.env.JWT_SECRET || "fallback_secret",
-          { expiresIn: "365d" }
-        );
-
-        return { id: "admin", email: adminEmail, token };
+        return { id: "admin", email: adminEmail };
       },
     }),
   ],

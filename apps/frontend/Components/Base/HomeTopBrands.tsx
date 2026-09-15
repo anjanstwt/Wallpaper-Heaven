@@ -87,7 +87,7 @@ type PanelMode = "add" | "edit";
 export default function HomeTopBrand() {
     const router = useRouter();
     const [brands, setBrands] = useState<Brand[]>([]);
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
 
     const [panelOpen, setPanelOpen] = useState(false);
     const [panelMode, setPanelMode] = useState<PanelMode>("add");
@@ -160,7 +160,7 @@ export default function HomeTopBrand() {
             };
             if (panelMode === "edit" && editingId) payload.id = editingId;
 
-            const { data } = await axios.post(UPSERT_BRAND_URL, payload, { headers: { Authorization: `Bearer ${token}` } });
+            const { data } = await axios.post(UPSERT_BRAND_URL, payload);
             if (data.success) {
                 const b = data.brand;
                 const updated: Brand = { id: b.id, name: b.name, about: b.about, image: b.image || "/images/home.png", rank: b.rank ?? null };
@@ -179,7 +179,7 @@ export default function HomeTopBrand() {
     const handleDelete = async (b: Brand) => {
         if (!canDelete) { toast.error("Need at least 6 ranked brands — add more before deleting."); return; }
         try {
-            await axios.delete(REMOVE_BRAND_URL, { data: { id: b.id }, headers: { Authorization: `Bearer ${token}` } });
+            await axios.delete(REMOVE_BRAND_URL, { data: { id: b.id } });
             setBrands(prev => prev.filter(x => x.id !== b.id));
             toast.success(`${b.name} removed.`);
         } catch { toast.error("Failed to delete brand."); }

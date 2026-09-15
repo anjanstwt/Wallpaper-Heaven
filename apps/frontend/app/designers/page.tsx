@@ -149,7 +149,7 @@ function SkeletonDesigner() {
 
 export default function DesignersPage() {
     const router = useRouter();
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
     const gridRef = useRef<HTMLDivElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const imageFileRef = useRef<HTMLInputElement>(null);
@@ -219,7 +219,7 @@ export default function DesignersPage() {
         const file = e.target.files?.[0];
         if (!file) return;
         setUploadingImage(true);
-        const url = await handleUpload(file, token!);
+        const url = await handleUpload(file);
         if (url) setDImage(url);
         else toast.error("Image upload failed.");
         setUploadingImage(false);
@@ -238,9 +238,7 @@ export default function DesignersPage() {
             };
             if (panelMode === "edit" && editingDesigner) payload.id = editingDesigner.id;
 
-            const { data } = await axios.post(UPSERT_CREATOR_URL, payload, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const { data } = await axios.post(UPSERT_CREATOR_URL, payload);
 
             if (data.success) {
                 const creator: Designer = data.creator;
@@ -265,9 +263,7 @@ export default function DesignersPage() {
                 label: "Delete",
                 onClick: async () => {
                     try {
-                        await axios.post(REMOVE_CREATOR_URL, { id: designer.id }, {
-                            headers: { Authorization: `Bearer ${token}` },
-                        });
+                        await axios.post(REMOVE_CREATOR_URL, { id: designer.id });
                         setDesigners(prev => prev.filter(d => d.id !== designer.id));
                         toast.success(`${designer.name} deleted.`);
                     } catch { toast.error("Failed to delete designer."); }

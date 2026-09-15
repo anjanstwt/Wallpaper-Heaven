@@ -38,10 +38,6 @@ export default function OfferPanel({ adminId }: { adminId: string }) {
                 productType,
                 validTill: validTill.toISOString(),
                 badge: tag,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${session.user.token}`
-                }
             });
 
             setMessage(res.data.message);

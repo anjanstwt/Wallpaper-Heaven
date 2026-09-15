@@ -25,7 +25,6 @@ export default function ManageBrands() {
         if (status === "unauthenticated") router.replace("/admin");
     }, [status, router]);
 
-    const token = session?.user?.token;
 
     const fetchBrands = async () => {
         const { data } = await axios.get(GET_BRANDS_URL);
@@ -45,7 +44,7 @@ export default function ManageBrands() {
         setLoading(true);
         setError("");
         try {
-            await axios.post(UPSERT_BRAND_URL, form, { headers: { Authorization: `Bearer ${token}` } });
+            await axios.post(UPSERT_BRAND_URL, form);
             setForm(empty);
             await fetchBrands();
         } catch (err: any) {
@@ -58,7 +57,7 @@ export default function ManageBrands() {
     const handleDelete = async (id: number) => {
         if (!confirm("Delete this brand?")) return;
         try {
-            await axios.delete(REMOVE_BRAND_URL, { data: { id }, headers: { Authorization: `Bearer ${token}` } });
+            await axios.delete(REMOVE_BRAND_URL, { data: { id } });
             setBrands((prev) => prev.filter((b) => b.id !== id));
         } catch {
             alert("Failed to delete.");

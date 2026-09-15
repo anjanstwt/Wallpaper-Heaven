@@ -20,13 +20,12 @@ export default function ImageUploadInput({ value, onChange, className }: ImageUp
 
     const onFileChange = async (file: File | undefined) => {
         if (!file) return;
-        const token = session?.user?.token;
-        if (!token) {
+        if (!session?.user) {
             toast.error("You must be logged in as admin to upload images.");
             return;
         }
         setUploading(true);
-        const url = await handleUpload(file, token);
+        const url = await handleUpload(file);
         setUploading(false);
         if (!url) return;
         onChange(url);

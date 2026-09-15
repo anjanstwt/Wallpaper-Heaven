@@ -7,7 +7,6 @@ import axios from "axios";
 import { toast } from "sonner";
 import { CheckCircle, Circle, Mail, Phone, Clock, MessageSquare, ArrowLeft } from "lucide-react";
 import { GET_QUERIES_URL, MARK_QUERY_READ_URL } from "@/routes/routes";
-import { useAdminCheck } from "@/hooks/useAdminCheck";
 
 type Query = {
     id: number;
@@ -29,7 +28,6 @@ function formatDate(iso: string) {
 export default function QueriesPage() {
     const { status } = useSession();
     const router = useRouter();
-    const { token } = useAdminCheck();
     const [queries, setQueries] = useState<Query[]>([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState<"all" | "unread" | "read">("all");
@@ -39,20 +37,19 @@ export default function QueriesPage() {
     }, [status, router]);
 
     useEffect(() => {
-        if (!token) return;
+        if (status !== "authenticated") return;
         axios
-            .get(GET_QUERIES_URL, { headers: { Authorization: `Bearer ${token}` } })
+            .get(GET_QUERIES_URL)
             .then(({ data }) => setQueries(data.queries ?? []))
             .catch(() => toast.error("Failed to load queries."))
             .finally(() => setLoading(false));
-    }, [token]);
+    }, [status]);
 
     const toggleRead = async (query: Query) => {
         try {
             const { data } = await axios.post(
                 MARK_QUERY_READ_URL,
-                { id: query.id, read: !query.read },
-                { headers: { Authorization: `Bearer ${token}` } }
+                { id: query.id, read: !query.read }
             );
             setQueries(prev => prev.map(q => q.id === query.id ? data.query : q));
         } catch { toast.error("Failed to update status."); }

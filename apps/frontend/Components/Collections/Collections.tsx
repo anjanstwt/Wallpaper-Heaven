@@ -42,7 +42,7 @@ const DEFAULT_SUBTITLE = "Explore our selection of premium wallpapers, designed 
 export default function TopCollections() {
     const router = useRouter();
     const gridRef = useRef<HTMLDivElement>(null);
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
     const editFileInputRef = useRef<HTMLInputElement>(null);
     const [editSlotIndex, setEditSlotIndex] = useState(0);
 
@@ -108,8 +108,7 @@ export default function TopCollections() {
         try {
             await axios.post(
                 UPSERT_SITE_SECTION_URL,
-                { key: "home-collections", title: dTitle, subtitle: dSubtitle },
-                { headers: { Authorization: `Bearer ${token}` } }
+                { key: "home-collections", title: dTitle, subtitle: dSubtitle }
             );
             setTitle(dTitle); setSubtitle(dSubtitle);
             setPanelOpen(false);
@@ -132,9 +131,9 @@ export default function TopCollections() {
 
     const onEditFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (!file || !token) return;
+        if (!file) return;
         const toastId = toast.loading("Uploading image…");
-        const url = await handleUpload(file, token);
+        const url = await handleUpload(file);
         toast.dismiss(toastId);
         if (!url) { toast.error("Upload failed."); return; }
         setEditImages(prev => {
@@ -156,8 +155,7 @@ export default function TopCollections() {
         try {
             await axios.post(
                 UPDATE_PRODUCT_BASICS_URL,
-                { id: editProduct.id, name: editName.trim(), images: validImages },
-                { headers: { Authorization: `Bearer ${token}` } }
+                { id: editProduct.id, name: editName.trim(), images: validImages }
             );
             setProducts(prev => prev.map(p =>
                 p.id === editProduct.id ? { ...p, name: editName.trim(), images: validImages } : p

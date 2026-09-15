@@ -125,7 +125,7 @@ function SkeletonBrand({ className }: { className?: string }) {
 
 export default function BrandsPage() {
     const router = useRouter();
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
     const sectionRef = useRef<HTMLDivElement>(null);
     const imageFileRef = useRef<HTMLInputElement>(null);
     const [brands, setBrands] = useState<Brand[]>(DEMO_BRANDS);
@@ -185,7 +185,7 @@ export default function BrandsPage() {
         const file = e.target.files?.[0];
         if (!file) return;
         setUploadingImage(true);
-        const url = await handleUpload(file, token!);
+        const url = await handleUpload(file);
         if (url) setBImage(url);
         else toast.error("Image upload failed.");
         setUploadingImage(false);
@@ -204,9 +204,7 @@ export default function BrandsPage() {
             };
             if (panelMode === "edit" && editingBrand) payload.id = editingBrand.id;
 
-            const { data } = await axios.post(UPSERT_BRAND_URL, payload, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const { data } = await axios.post(UPSERT_BRAND_URL, payload);
 
             if (data.success) {
                 const brand: Brand = data.brand;
@@ -231,9 +229,7 @@ export default function BrandsPage() {
                 label: "Delete",
                 onClick: async () => {
                     try {
-                        await axios.post(REMOVE_BRAND_URL, { id: brand.id }, {
-                            headers: { Authorization: `Bearer ${token}` },
-                        });
+                        await axios.post(REMOVE_BRAND_URL, { id: brand.id });
                         setBrands(prev => prev.filter(b => b.id !== brand.id));
                         toast.success(`${brand.name} deleted.`);
                     } catch { toast.error("Failed to delete brand."); }

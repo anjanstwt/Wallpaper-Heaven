@@ -37,7 +37,7 @@ export default function HomeGenre() {
     const router = useRouter();
     const containerRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
 
     const [genres, setGenres] = useState<Genre[]>(FALLBACK_GENRES);
     const [selected, setSelected] = useState<Genre | null>(FALLBACK_GENRES[0]);
@@ -103,8 +103,7 @@ export default function HomeGenre() {
             try {
                 const { data } = await axios.post(
                     UPSERT_TAG_URL,
-                    { name: newGenre.trim(), image: newImage.trim() || undefined },
-                    { headers: { Authorization: `Bearer ${token}` } }
+                    { name: newGenre.trim(), image: newImage.trim() || undefined }
                 );
                 if (data.success) {
                     const tag = data.tag;
@@ -126,8 +125,7 @@ export default function HomeGenre() {
             try {
                 const { data } = await axios.post(
                     UPSERT_TAG_URL,
-                    { id: editingGenre.id, name: editName.trim(), image: editImage.trim() || undefined },
-                    { headers: { Authorization: `Bearer ${token}` } }
+                    { id: editingGenre.id, name: editName.trim(), image: editImage.trim() || undefined }
                 );
                 if (data.success) {
                     const updatedName = editName.trim();

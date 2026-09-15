@@ -14,7 +14,7 @@ const DEFAULT_SUBTITLE = "Bring your interiors to life with designs that inspire
 export default function Hero() {
     const heroRef = useRef<HTMLDivElement | null>(null);
     const [isVisible, setIsVisible] = useState(false);
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
 
     const [panelOpen, setPanelOpen] = useState(false);
     const [saving, setSaving] = useState(false);
@@ -46,8 +46,7 @@ export default function Hero() {
         try {
             await axios.post(
                 UPSERT_SITE_SECTION_URL,
-                { key: "home-hero", badge: dBadge, title: dTitle, subtitle: dSubtitle },
-                { headers: { Authorization: `Bearer ${token}` } }
+                { key: "home-hero", badge: dBadge, title: dTitle, subtitle: dSubtitle }
             );
             setBadge(dBadge); setTitle(dTitle); setSubtitle(dSubtitle);
             setPanelOpen(false);

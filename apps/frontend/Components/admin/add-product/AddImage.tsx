@@ -22,11 +22,10 @@ export default function AddImage() {
 
     const onFileChange = async (index: number, file: File | undefined) => {
         if (!file) return;
-        const token = session?.user?.token;
-        if (!token) { toast.error("You must be logged in as admin to upload images."); return; }
+        if (!session?.user) { toast.error("You must be logged in as admin to upload images."); return; }
 
         const toastId = toast.loading(`Uploading image ${index + 1}…`);
-        const url = await handleUpload(file, token);
+        const url = await handleUpload(file);
         toast.dismiss(toastId);
 
         if (!url) { toast.error("Image upload failed."); return; }

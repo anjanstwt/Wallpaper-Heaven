@@ -22,7 +22,6 @@ export default function ManageTags() {
         if (status === "unauthenticated") router.replace("/admin");
     }, [status, router]);
 
-    const token = session?.user?.token;
 
     const fetchTags = async () => {
         const { data } = await axios.get(GET_TAGS_URL);
@@ -39,7 +38,7 @@ export default function ManageTags() {
         setLoading(true);
         setError("");
         try {
-            await axios.post(UPSERT_TAG_URL, { name }, { headers: { Authorization: `Bearer ${token}` } });
+            await axios.post(UPSERT_TAG_URL, { name });
             setName("");
             await fetchTags();
         } catch (err: any) {
@@ -52,7 +51,7 @@ export default function ManageTags() {
     const handleDelete = async (id: number) => {
         if (!confirm("Delete this tag?")) return;
         try {
-            await axios.delete(REMOVE_TAG_URL, { data: { id }, headers: { Authorization: `Bearer ${token}` } });
+            await axios.delete(REMOVE_TAG_URL, { data: { id } });
             setTags((prev) => prev.filter((t) => t.id !== id));
         } catch {
             alert("Failed to delete.");

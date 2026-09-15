@@ -18,7 +18,7 @@ export default function AddProduct() {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async () => {
-        if (!session?.user?.token) { toast.error("You must be logged in as admin."); return; }
+        if (!session?.user) { toast.error("You must be logged in as admin."); return; }
         if (!product.productTypeId) { toast.error("Please select a product type."); return; }
 
         const validImages = product.images.filter(Boolean);
@@ -38,8 +38,7 @@ export default function AddProduct() {
                     brandId: product.brandId,
                     creatorId: product.creatorId,
                     tagsId: product.tagIds,
-                },
-                { headers: { Authorization: `Bearer ${session.user.token}` } }
+                }
             );
             toast.success("Product added successfully!");
             resetProduct();

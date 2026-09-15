@@ -26,7 +26,6 @@ export default function ManageCreators() {
         if (status === "unauthenticated") router.replace("/admin");
     }, [status, router]);
 
-    const token = session?.user?.token;
 
     const fetchCreators = async () => {
         const { data } = await axios.get(GET_CREATORS_URL);
@@ -46,7 +45,7 @@ export default function ManageCreators() {
         setLoading(true);
         setError("");
         try {
-            await axios.post(UPSERT_CREATOR_URL, form, { headers: { Authorization: `Bearer ${token}` } });
+            await axios.post(UPSERT_CREATOR_URL, form);
             setForm(empty);
             await fetchCreators();
         } catch (err: any) {
@@ -59,7 +58,7 @@ export default function ManageCreators() {
     const handleDelete = async (id: number) => {
         if (!confirm("Delete this creator?")) return;
         try {
-            await axios.delete(REMOVE_CREATOR_URL, { data: { id }, headers: { Authorization: `Bearer ${token}` } });
+            await axios.delete(REMOVE_CREATOR_URL, { data: { id } });
             setCreators((prev) => prev.filter((c) => c.id !== id));
         } catch {
             alert("Failed to delete.");

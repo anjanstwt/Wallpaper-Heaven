@@ -1,6 +1,6 @@
-export const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8080";
-
-export const API_URL = BACKEND_URL + "/api/v1";
+// The API now lives inside this Next.js app (see app/api/v1/**), so all URLs
+// below are relative same-origin paths — no separate backend service/URL.
+export const API_URL = "/api/v1";
 
 // Uploads
 export const UPLOAD_IMAGE_URL = API_URL + "/get-presigned-url";

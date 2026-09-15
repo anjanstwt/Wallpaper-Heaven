@@ -22,7 +22,6 @@ export default function ManageProductTypes() {
         if (status === "unauthenticated") router.replace("/admin");
     }, [status, router]);
 
-    const token = session?.user?.token;
 
     const fetchTypes = async () => {
         const { data } = await axios.get(GET_PRODUCT_TYPES_URL);
@@ -39,7 +38,7 @@ export default function ManageProductTypes() {
         setLoading(true);
         setError("");
         try {
-            await axios.post(UPSERT_PRODUCT_TYPE_URL, { name }, { headers: { Authorization: `Bearer ${token}` } });
+            await axios.post(UPSERT_PRODUCT_TYPE_URL, { name });
             setName("");
             await fetchTypes();
         } catch (err: any) {
@@ -52,7 +51,7 @@ export default function ManageProductTypes() {
     const handleDelete = async (id: number) => {
         if (!confirm("Delete this product type? All linked products will also be deleted.")) return;
         try {
-            await axios.delete(DELETE_PRODUCT_TYPE_URL, { data: { id }, headers: { Authorization: `Bearer ${token}` } });
+            await axios.delete(DELETE_PRODUCT_TYPE_URL, { data: { id } });
             setTypes((prev) => prev.filter((t) => t.id !== id));
         } catch {
             alert("Failed to delete.");

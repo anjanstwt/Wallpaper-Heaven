@@ -62,7 +62,7 @@ function SkeletonGrid() {
 
 export default function CollectionsPage() {
     const router = useRouter();
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
     const gridRef = useRef<HTMLDivElement>(null);
     const tabsRef = useRef<HTMLDivElement>(null);
     const editFileInputRef = useRef<HTMLInputElement>(null);
@@ -139,7 +139,7 @@ export default function CollectionsPage() {
         const file = e.target.files?.[0];
         if (!file) return;
         setUploadingSlot(editSlotIndex);
-        const url = await handleUpload(file, token!);
+        const url = await handleUpload(file);
         if (url) {
             setEditImages(prev => {
                 const next = [...prev];
@@ -168,8 +168,7 @@ export default function CollectionsPage() {
         try {
             const { data } = await axios.post(
                 UPDATE_PRODUCT_BASICS_URL,
-                { id: editProduct.id, name: editName.trim(), images: editImages },
-                { headers: { Authorization: `Bearer ${token}` } }
+                { id: editProduct.id, name: editName.trim(), images: editImages }
             );
             if (data.success) {
                 setProducts(prev =>

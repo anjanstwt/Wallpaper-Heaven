@@ -57,7 +57,7 @@ function SkeletonBento() {
 
 export default function GenrePage() {
     const router = useRouter();
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
     const gridRef = useRef<HTMLDivElement>(null);
     const imageFileRef = useRef<HTMLInputElement>(null);
     const [genres, setGenres] = useState<Genre[]>(DEMO_GENRES);
@@ -112,7 +112,7 @@ export default function GenrePage() {
         const file = e.target.files?.[0];
         if (!file) return;
         setUploadingImage(true);
-        const url = await handleUpload(file, token!);
+        const url = await handleUpload(file);
         if (url) setGImage(url);
         else toast.error("Image upload failed.");
         setUploadingImage(false);
@@ -126,9 +126,7 @@ export default function GenrePage() {
             const payload: Record<string, unknown> = { name: gName.trim(), image: gImage || undefined };
             if (panelMode === "edit" && editingGenre) payload.id = editingGenre.id;
 
-            const { data } = await axios.post(UPSERT_TAG_URL, payload, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const { data } = await axios.post(UPSERT_TAG_URL, payload);
 
             if (data.success) {
                 const genre: Genre = data.tag;
@@ -153,9 +151,7 @@ export default function GenrePage() {
                 label: "Delete",
                 onClick: async () => {
                     try {
-                        await axios.post(REMOVE_TAG_URL, { id: genre.id }, {
-                            headers: { Authorization: `Bearer ${token}` },
-                        });
+                        await axios.post(REMOVE_TAG_URL, { id: genre.id });
                         setGenres(prev => prev.filter(g => g.id !== genre.id));
                         toast.success(`${genre.name} deleted.`);
                     } catch { toast.error("Failed to delete genre."); }

@@ -33,7 +33,7 @@ export default function HomeDesigners() {
     const router = useRouter();
     const [designers, setDesigners] = useState<Designer[]>(FALLBACK);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
 
     const [panelOpen, setPanelOpen] = useState(false);
     const [saving, setSaving] = useState(false);
@@ -67,8 +67,7 @@ export default function HomeDesigners() {
         try {
             const { data } = await axios.post(
                 UPSERT_CREATOR_URL,
-                { name: dName.trim(), about: dRole.trim(), description: dDesc.trim(), image: dImage.trim() || undefined },
-                { headers: { Authorization: `Bearer ${token}` } }
+                { name: dName.trim(), about: dRole.trim(), description: dDesc.trim(), image: dImage.trim() || undefined }
             );
             if (data.success) {
                 const c = data.creator;

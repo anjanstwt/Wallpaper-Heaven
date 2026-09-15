@@ -45,7 +45,7 @@ export default function HomeEnlargedImage() {
     const [selected, setSelected] = useState<number>(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const controls = useAnimation();
-    const { isAdmin, token } = useAdminCheck();
+    const { isAdmin } = useAdminCheck();
 
     const [panelOpen, setPanelOpen] = useState(false);
     const [saving, setSaving] = useState(false);
@@ -102,8 +102,7 @@ export default function HomeEnlargedImage() {
         try {
             await axios.post(
                 UPSERT_SITE_SECTION_URL,
-                { key: KEYS[selected], title: dTitle, description: dDesc, rootImage: dRootImage, images: dSmall },
-                { headers: { Authorization: `Bearer ${token}` } }
+                { key: KEYS[selected], title: dTitle, description: dDesc, rootImage: dRootImage, images: dSmall }
             );
             setSections(prev =>
                 prev.map((s, i) =>

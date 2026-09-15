@@ -7,14 +7,7 @@ import { ArrowRightFromLine, User } from 'lucide-react';
 import SignIn from '../Auth/Signin';
 import { signOut, useSession } from 'next-auth/react';
 import { IconCaretDownFilled, IconSearch, IconSquarePlus } from '@tabler/icons-react';
-import { getToken } from "next-auth/jwt";
 import OfferPanel from '../SetOfferPanel/OfferPanel';
-
-export async function handler(req: any, res: any) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-  console.log(token);
-  res.end();
-}
 
 export default function Navbar2() {
   const [isScrolled, setIsScrolled] = useState(false);
