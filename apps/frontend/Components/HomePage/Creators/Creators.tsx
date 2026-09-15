@@ -53,17 +53,17 @@ export default function Creators() {
   const router = useRouter();
 
   return (
-    <div className="w-full flex flex-col items-center gap-y-3 mt-20 mb-10 px-6">
-      <div className="text-6xl font-serif md:text-4xl text-center font-bold text-[#000000]">
+    <div className="w-full flex flex-col items-center gap-y-3 mt-12 sm:mt-20 mb-10 px-4 sm:px-6">
+      <div className="text-3xl sm:text-4xl font-serif text-center font-bold text-[#000000]">
         Our Top Creators
       </div>
-      <div className="text-md font-serif md:text-xl text-center font-light tracking-wide text-gray-600">
+      <div className="text-sm sm:text-md font-serif sm:text-xl text-center font-light tracking-wide text-gray-600">
         The minds behind the masterpieces
       </div>
       <div
         onClick={() => router.push("/creator/1")}
         title="Click to view more"
-        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mt-6 cursor-pointer"
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-6 mt-6 cursor-pointer"
       >
         {people.map((creator, i) => (
           <CreatorCard

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import EditPanel, { FieldInput, FieldLabel } from "@/Components/admin/EditPanel";
+import ImageUploadInput from "@/Components/ui/ImageUploadInput";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { GET_BRANDS_URL, UPSERT_BRAND_URL, REMOVE_BRAND_URL } from "@/routes/routes";
 
@@ -198,7 +199,7 @@ export default function HomeTopBrand() {
                 >
                     <div><FieldLabel>Brand Name *</FieldLabel><FieldInput value={dName} onChange={v => { setDName(v); setFormError(""); }} placeholder="e.g. Arte Milano" /></div>
                     <div><FieldLabel>Tagline *</FieldLabel><FieldInput value={dAbout} onChange={v => { setDAbout(v); setFormError(""); }} placeholder="e.g. Luxury Italian wallpapers" /></div>
-                    <div><FieldLabel>Image URL</FieldLabel><FieldInput value={dImage} onChange={setDImage} placeholder="https://..." /></div>
+                    <div><FieldLabel>Image</FieldLabel><ImageUploadInput value={dImage} onChange={setDImage} /></div>
                     <div>
                         <FieldLabel>Home Page Rank (1–6)</FieldLabel>
                         <FieldInput value={dRank} onChange={v => { setDRank(v); setFormError(""); }} placeholder="e.g. 1  (leave blank to hide from home)" />

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
 import EditPanel, { FieldInput, FieldLabel, FieldTextarea } from "@/Components/admin/EditPanel";
+import ImageUploadInput from "@/Components/ui/ImageUploadInput";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { GET_CREATORS_URL, UPSERT_CREATOR_URL } from "@/routes/routes";
 
@@ -96,7 +97,7 @@ export default function HomeDesigners() {
                     <div><FieldLabel>Name *</FieldLabel><FieldInput value={dName} onChange={v => { setDName(v); setAddError(""); }} placeholder="e.g. Priya Mehta" /></div>
                     <div><FieldLabel>Role / Tagline *</FieldLabel><FieldInput value={dRole} onChange={v => { setDRole(v); setAddError(""); }} placeholder="e.g. Interior Stylist" /></div>
                     <div><FieldLabel>About</FieldLabel><FieldTextarea value={dDesc} onChange={setDDesc} placeholder="Short bio..." rows={3} /></div>
-                    <div><FieldLabel>Photo URL</FieldLabel><FieldInput value={dImage} onChange={setDImage} placeholder="https://..." /></div>
+                    <div><FieldLabel>Photo</FieldLabel><ImageUploadInput value={dImage} onChange={setDImage} /></div>
                     {addError && <p className="text-xs text-red-500">{addError}</p>}
                 </EditPanel>
             )}

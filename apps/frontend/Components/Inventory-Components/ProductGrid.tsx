@@ -11,8 +11,8 @@ export default function ProductGrid({
     onSelect: (product: Product) => void;
 }) {
     return (
-        <div className="min-h-[600px] w-full p-10 ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+        <div className="min-h-[600px] w-full p-4 sm:p-6 lg:p-10 ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 place-items-center">
                 {products.map((product) => (
                     <ProductCard
                         key={product.id}
@@ -37,10 +37,10 @@ function ProductCard({
     return (
         <>
             <div
-                className="w-[350px] h-[450px] flex flex-col items-center cursor-pointer"
+                className="w-full max-w-[350px] h-auto flex flex-col items-center cursor-pointer"
                 onClick={onSelect}
             >
-                <div className="w-[350px] h-[350px] rounded-xl relative overflow-hidden shadow-xl hover:scale-105 transition-all transform duration-200">
+                <div className="w-full aspect-square max-w-[350px] max-h-[350px] rounded-xl relative overflow-hidden shadow-xl hover:scale-105 transition-all transform duration-200">
                     <Image
                         src={product.image}
                         alt={product.name}

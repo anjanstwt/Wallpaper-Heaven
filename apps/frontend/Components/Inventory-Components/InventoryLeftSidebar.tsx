@@ -10,8 +10,8 @@ export default function LeftSidebar() {
     const designs = ["Modern", "Classic", "Tropical"];
 
     return (
-        <div className="fixed top-[5rem] left-0 w-[15%] h-[370px] border-t border-b border-neutral-400 p-2 px-7 flex flex-col gap-y-8">
-            
+        <div className="hidden lg:flex lg:fixed top-[5rem] left-0 w-full sm:w-[40%] md:w-[25%] lg:w-[15%] h-auto lg:h-[370px] border-t border-b border-neutral-400 p-2 px-4 lg:px-7 flex-col gap-y-8">
+
             <div className="w-full">
                 <span className="w-full h-10 flex justify-center items-center bg-[#8CCCDC] shadow-sm rounded-xl text-neutral-900 mb-3 py-1 tracking-wide text-[18px] hover:-translate-y-0.5 transition-all transform duration-200">Filters</span>
 

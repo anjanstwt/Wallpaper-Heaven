@@ -42,9 +42,9 @@ export const TermsAndConditions = () => {
     ];
 
     return (
-        <div className="max-w-4xl mx-auto bg-white min-h-screen font-sans">
-            <div className="mt-16 border-t-4 border-b-4 border-black pt-8 pb-8 mb-8">
-                <h1 className="text-center text-3xl font-bold tracking-wider text-black">
+        <div className="max-w-4xl mx-auto bg-white min-h-screen font-sans px-4 sm:px-6 md:px-8">
+            <div className="mt-8 sm:mt-12 md:mt-16 border-t-4 border-b-4 border-black pt-6 pb-6 sm:pt-8 sm:pb-8 mb-6 sm:mb-8">
+                <h1 className="text-center text-2xl sm:text-3xl font-bold tracking-wider text-black">
                     TERMS & CONDITIONS
                 </h1>
             </div>
@@ -52,10 +52,10 @@ export const TermsAndConditions = () => {
             <div>
                 {termsData.map((term: TermSection) => (
                     <div key={term.id} className="mb-6">
-                        <h2 className="text-xl font-bold mb-4 text-black underline">
+                        <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-black underline">
                             {term.title}
                         </h2>
-                        <div className="text-justify text-black leading-relaxed text-base">
+                        <div className="text-justify text-black leading-relaxed text-sm sm:text-base">
                             {term.content.split("\n").map((paragraph, index) => (
                                 <p key={index} className={paragraph.trim() ? "mb-4" : ""}>
                                     {paragraph}
@@ -66,8 +66,8 @@ export const TermsAndConditions = () => {
                 ))}
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-8 text-center">
-                <p className="text-green-700 font-medium">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-8 mb-8 text-center">
+                <p className="text-green-700 font-medium text-sm sm:text-base">
                     {termsData.length} sections published
                 </p>
             </div>

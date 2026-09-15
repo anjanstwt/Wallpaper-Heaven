@@ -26,7 +26,7 @@ export function GiantSlider() {
     },
   ];
   return (
-    <div className="relative overflow-hidden w-full h-full pt-30 pb-50">
+    <div className="relative overflow-hidden w-full h-full pt-10 pb-16 sm:pt-16 sm:pb-24 lg:pt-30 lg:pb-50">
       <Carousel slides={slideData} />
     </div>
   );

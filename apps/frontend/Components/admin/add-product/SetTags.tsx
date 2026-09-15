@@ -57,10 +57,10 @@ export default function SetTags() {
     };
 
     return (
-        <div className="text-[#3D5A40] max-w-[672px] bg-[#F9FAF8] p-6 rounded-xl shadow-sm">
+        <div className="text-[#3D5A40] w-full max-w-[672px] bg-[#F9FAF8] p-4 sm:p-6 rounded-xl shadow-sm">
             <div className="flex flex-col items-start mb-6">
-                <div className="font-bold text-2xl sm:text-3xl text-[#3D5A40]">Set Tags</div>
-                <div className="text-[#6D7278] text-base mt-1">
+                <div className="font-bold text-xl sm:text-2xl md:text-3xl text-[#3D5A40]">Set Tags</div>
+                <div className="text-[#6D7278] text-sm sm:text-base mt-1">
                     Give your product a final touch.
                 </div>
             </div>

@@ -6,6 +6,7 @@ import { motion, useAnimation } from "framer-motion";
 import axios from "axios";
 import { toast } from "sonner";
 import EditPanel, { FieldInput, FieldLabel, FieldTextarea } from "@/Components/admin/EditPanel";
+import ImageUploadInput from "@/Components/ui/ImageUploadInput";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { GET_SITE_SECTION_URL, UPSERT_SITE_SECTION_URL } from "@/routes/routes";
 
@@ -140,16 +141,15 @@ export default function HomeEnlargedImage() {
                 >
                     <div><FieldLabel>Title</FieldLabel><FieldInput value={dTitle} onChange={setDTitle} placeholder="Section title" /></div>
                     <div><FieldLabel>Description</FieldLabel><FieldTextarea value={dDesc} onChange={setDDesc} placeholder="Section description" rows={4} /></div>
-                    <div><FieldLabel>Main Image URL</FieldLabel><FieldInput value={dRootImage} onChange={setDRootImage} placeholder="https://..." /></div>
+                    <div><FieldLabel>Main Image</FieldLabel><ImageUploadInput value={dRootImage} onChange={setDRootImage} /></div>
                     <div>
-                        <FieldLabel>Small Images (4 URLs)</FieldLabel>
-                        <div className="flex flex-col gap-2 mt-1">
+                        <FieldLabel>Small Images (4)</FieldLabel>
+                        <div className="grid grid-cols-2 gap-2 mt-1">
                             {dSmall.map((url, i) => (
-                                <FieldInput
+                                <ImageUploadInput
                                     key={i}
                                     value={url}
                                     onChange={v => setDSmall(prev => { const n = [...prev]; n[i] = v; return n; })}
-                                    placeholder={`Image ${i + 1} URL`}
                                 />
                             ))}
                         </div>

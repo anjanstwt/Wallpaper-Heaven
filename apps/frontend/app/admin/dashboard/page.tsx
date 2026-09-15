@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 
 const adminLinks = [
-    { label: "Add / Edit Product", href: "/add-product", description: "Upload images and create new products" },
+    { label: "Add / Edit Product", href: "/admin/add-product", description: "Upload images and create new products" },
     { label: "Manage Product Types", href: "/admin/product-types", description: "Add or remove product categories" },
     { label: "Manage Brands", href: "/admin/brands", description: "Add or remove brands" },
     { label: "Manage Tags", href: "/admin/tags", description: "Add or remove tags" },

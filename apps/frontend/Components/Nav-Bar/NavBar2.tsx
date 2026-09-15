@@ -70,9 +70,9 @@ export default function Navbar2() {
           transition: "max-width 0.6s ease, top 0.4s ease",
         }}
       >
-        <div className="w-full px-8 flex justify-between items-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <Link href="/" className="flex items-center">
-            <span className={`text-2xl font-semibold font-playfair ${isScrolled ? 'text-black' : ''}`}>
+            <span className={`text-lg sm:text-xl lg:text-2xl font-semibold font-playfair ${isScrolled ? 'text-black' : ''}`}>
               Wallpaper Heaven
             </span>
           </Link>
@@ -187,7 +187,7 @@ export default function Navbar2() {
         </div>
 
         {searchPanel && (
-          <div className="md:hidden px-4 mt-2">
+          <div className="md:hidden px-4 sm:px-6 mt-2">
             <input
               type="text"
               placeholder="Search"
@@ -198,7 +198,7 @@ export default function Navbar2() {
 
         {isMenuOpen && (
           <div className="md:hidden bg-white mt-2 py-4">
-            <div className="container mx-auto px-4 flex flex-col gap-4">
+            <div className="container mx-auto px-4 sm:px-6 flex flex-col gap-4">
               {['#collections', '#inspiration', '#about', '#contact'].map((href, idx) => (
                 <Link key={href} href={href} className="text-gray-800 hover:text-gray-600">
                   {['Collections', 'Inspiration', 'About Us', 'Contact'][idx]}

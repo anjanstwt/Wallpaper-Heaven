@@ -44,17 +44,17 @@ export default function AddImage() {
     };
 
     return (
-        <div className="text-[#3D5A40] bg-[#F9FAF8] p-6 rounded-xl shadow-sm w-full max-w-3xl">
+        <div className="text-[#3D5A40] bg-[#F9FAF8] p-4 sm:p-6 rounded-xl shadow-sm w-full max-w-3xl">
             <div className="flex flex-col items-start mb-6">
-                <div className="font-bold text-2xl sm:text-3xl">Select Images</div>
-                <div className="text-[#6D7278] text-base mt-1">
+                <div className="font-bold text-xl sm:text-2xl md:text-3xl">Select Images</div>
+                <div className="text-[#6D7278] text-sm sm:text-base mt-1">
                     Upload <span className="font-semibold text-[#3D5A40]">3 required</span> images and up to 5 optional ones.
                 </div>
             </div>
 
             {/* Required slots */}
             <p className="text-xs font-semibold text-[#3D5A40] uppercase tracking-widest mb-3">Required</p>
-            <div className="flex flex-wrap gap-4 mb-6">
+            <div className="flex flex-wrap gap-3 sm:gap-4 mb-6">
                 {Array.from({ length: REQUIRED }).map((_, i) => (
                     <ImageSlot
                         key={i}
@@ -71,7 +71,7 @@ export default function AddImage() {
 
             {/* Optional slots */}
             <p className="text-xs font-semibold text-neutral-400 uppercase tracking-widest mb-3">Optional</p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3 sm:gap-4">
                 {Array.from({ length: TOTAL - REQUIRED }).map((_, j) => {
                     const i = REQUIRED + j;
                     return (
@@ -114,7 +114,7 @@ function ImageSlot({ index, url, inputRef, required, onTrigger, onFileChange, on
             />
 
             {url ? (
-                <div className="relative h-28 w-28 sm:h-40 sm:w-40 rounded-xl overflow-hidden border-2 border-[#6DA165]">
+                <div className="relative h-24 w-24 sm:h-32 sm:w-32 md:h-40 md:w-40 rounded-xl overflow-hidden border-2 border-[#6DA165]">
                     <Image src={url} alt={`Image ${index + 1}`} fill className="object-cover" unoptimized />
 
                     {/* Hover overlay: edit + remove */}
@@ -145,7 +145,7 @@ function ImageSlot({ index, url, inputRef, required, onTrigger, onFileChange, on
             ) : (
                 <div
                     onClick={onTrigger}
-                    className={`h-28 w-28 sm:h-40 sm:w-40 rounded-xl flex flex-col justify-center items-center gap-1 cursor-pointer transition-all
+                    className={`h-24 w-24 sm:h-32 sm:w-32 md:h-40 md:w-40 rounded-xl flex flex-col justify-center items-center gap-1 cursor-pointer transition-all
                         ${required
                             ? "border-2 border-dashed border-[#6DA165] bg-white hover:bg-[#eef4ec]"
                             : "border-2 border-dashed border-neutral-300 bg-white hover:bg-neutral-50"

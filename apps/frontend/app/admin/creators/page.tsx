@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { IconTrash, IconArrowLeft } from "@tabler/icons-react";
 import { GET_CREATORS_URL, UPSERT_CREATOR_URL, REMOVE_CREATOR_URL } from "@/routes/routes";
+import ImageUploadInput from "@/Components/ui/ImageUploadInput";
 
 interface Creator { id: number; name: string; about: string; image?: string }
 
@@ -69,14 +70,14 @@ export default function ManageCreators() {
 
     return (
         <div className="min-h-screen bg-[#F9FAF8]">
-            <div className="bg-white border-b border-[#E5E7EB] px-8 py-4 flex items-center gap-4">
+            <div className="bg-white border-b border-[#E5E7EB] px-4 sm:px-8 py-4 flex items-center gap-4">
                 <Link href="/admin/dashboard" className="text-[#6D7278] hover:text-[#3D5A40] transition-colors">
                     <IconArrowLeft size={20} />
                 </Link>
-                <h1 className="text-xl font-bold text-[#3D5A40]">Manage Creators</h1>
+                <h1 className="text-lg sm:text-xl font-bold text-[#3D5A40]">Manage Creators</h1>
             </div>
 
-            <div className="max-w-2xl mx-auto px-8 py-10 flex flex-col gap-8">
+            <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-10 flex flex-col gap-8">
                 {/* Add form */}
                 <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6">
                     <h2 className="font-semibold text-[#3D5A40] text-lg mb-4">Add Creator</h2>
@@ -87,8 +88,7 @@ export default function ManageCreators() {
                             className="border border-[#D1D5DB] rounded-full px-5 py-2.5 text-sm text-[#3D5A40] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6DA165]" />
                         <textarea value={form.description} onChange={set("description")} placeholder="Full description (optional)" rows={3}
                             className="border border-[#D1D5DB] rounded-2xl px-5 py-2.5 text-sm text-[#3D5A40] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6DA165] resize-none" />
-                        <input type="text" value={form.image} onChange={set("image")} placeholder="Profile image URL (optional)"
-                            className="border border-[#D1D5DB] rounded-full px-5 py-2.5 text-sm text-[#3D5A40] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6DA165]" />
+                        <ImageUploadInput value={form.image} onChange={(url) => setForm((f) => ({ ...f, image: url }))} />
                         {error && <p className="text-red-500 text-sm">{error}</p>}
                         <button type="submit" disabled={loading}
                             className="self-end bg-[#6DA165] text-white px-8 py-2.5 rounded-full text-sm font-semibold hover:bg-[#5a914e] transition-colors disabled:opacity-60">
@@ -105,8 +105,8 @@ export default function ManageCreators() {
                         : (
                             <ul className="flex flex-col gap-3">
                                 {creators.map((c) => (
-                                    <li key={c.id} className="flex justify-between items-center border border-[#E5E7EB] rounded-xl px-4 py-3">
-                                        <div className="flex items-center gap-3">
+                                    <li key={c.id} className="flex justify-between items-center gap-2 border border-[#E5E7EB] rounded-xl px-3 sm:px-4 py-3">
+                                        <div className="flex items-center gap-3 min-w-0">
                                             {c.image
                                                 ? <div className="relative h-10 w-10 rounded-full overflow-hidden border border-[#E5E7EB] flex-shrink-0">
                                                     <Image src={c.image} alt={c.name} fill className="object-cover" />
@@ -115,12 +115,12 @@ export default function ManageCreators() {
                                                     {c.name[0]}
                                                 </div>
                                             }
-                                            <div>
-                                                <p className="text-[#3D5A40] font-semibold text-sm">{c.name}</p>
-                                                <p className="text-[#6D7278] text-xs">{c.about}</p>
+                                            <div className="min-w-0">
+                                                <p className="text-[#3D5A40] font-semibold text-sm break-words">{c.name}</p>
+                                                <p className="text-[#6D7278] text-xs break-words">{c.about}</p>
                                             </div>
                                         </div>
-                                        <button onClick={() => handleDelete(c.id)} className="text-red-400 hover:text-red-600 transition-colors">
+                                        <button onClick={() => handleDelete(c.id)} className="text-red-400 hover:text-red-600 transition-colors flex-shrink-0">
                                             <IconTrash size={18} />
                                         </button>
                                     </li>

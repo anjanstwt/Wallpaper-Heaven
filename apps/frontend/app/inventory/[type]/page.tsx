@@ -71,7 +71,7 @@ export default function Page() {
                 {loading ? (
                     <div className="flex justify-center py-20 text-gray-400">Loading...</div>
                 ) : (
-                    <div className="flex justify-between lg:pt-10">
+                    <div className="flex flex-col lg:flex-row justify-between gap-y-6 lg:gap-x-6 lg:pt-10">
                         <Filter />
                         <ObjectInventory products={products} />
                     </div>

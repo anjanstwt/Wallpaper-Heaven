@@ -9,9 +9,9 @@
   "scripts": {
     "build": "tsc -b",
     "generate": "prisma generate",
-    "migrate": "prisma migrate dev --env-file ../../../.env",
-    "db:push": "prisma db push --env-file ../../../.env",
-    "studio": "prisma studio --env-file ../../../.env"
+    "migrate": "node --env-file=../../.env node_modules/prisma/build/index.js migrate dev",
+    "db:push": "node --env-file=../../.env node_modules/prisma/build/index.js db push",
+    "studio": "node --env-file=../../.env node_modules/prisma/build/index.js studio"
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",

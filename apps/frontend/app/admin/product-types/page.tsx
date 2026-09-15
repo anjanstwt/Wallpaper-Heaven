@@ -63,14 +63,14 @@ export default function ManageProductTypes() {
 
     return (
         <div className="min-h-screen bg-[#F9FAF8]">
-            <div className="bg-white border-b border-[#E5E7EB] px-8 py-4 flex items-center gap-4">
+            <div className="bg-white border-b border-[#E5E7EB] px-4 sm:px-8 py-4 flex items-center gap-4">
                 <Link href="/admin/dashboard" className="text-[#6D7278] hover:text-[#3D5A40] transition-colors">
                     <IconArrowLeft size={20} />
                 </Link>
-                <h1 className="text-xl font-bold text-[#3D5A40]">Manage Product Types</h1>
+                <h1 className="text-lg sm:text-xl font-bold text-[#3D5A40]">Manage Product Types</h1>
             </div>
 
-            <div className="max-w-2xl mx-auto px-8 py-10 flex flex-col gap-8">
+            <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-10 flex flex-col gap-8">
                 {/* Add form */}
                 <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6">
                     <h2 className="font-semibold text-[#3D5A40] text-lg mb-4">Add Product Type</h2>
@@ -101,8 +101,8 @@ export default function ManageProductTypes() {
                         : (
                             <ul className="flex flex-col gap-2">
                                 {types.map((t) => (
-                                    <li key={t.id} className="flex justify-between items-center border border-[#E5E7EB] rounded-xl px-4 py-3">
-                                        <span className="text-[#3D5A40] font-medium">{t.name}</span>
+                                    <li key={t.id} className="flex justify-between items-center gap-2 border border-[#E5E7EB] rounded-xl px-3 sm:px-4 py-3">
+                                        <span className="text-[#3D5A40] font-medium break-words min-w-0">{t.name}</span>
                                         <button onClick={() => handleDelete(t.id)} className="text-red-400 hover:text-red-600 transition-colors">
                                             <IconTrash size={18} />
                                         </button>

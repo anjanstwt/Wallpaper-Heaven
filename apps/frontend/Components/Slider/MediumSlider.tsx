@@ -14,11 +14,11 @@ export function MediumSlider() {
   ));
 
   return (
-    <div className="w-full flex flex-col justify-start items-center gap-y-3 px-6 mb-6">
-      <div className="text-5xl font-serif md:text-4xl text-center font-bold text-neutral-800 dark:text-neutral-200">
+    <div className="w-full flex flex-col justify-start items-center gap-y-3 px-4 sm:px-6 mb-6">
+      <div className="text-3xl sm:text-4xl md:text-5xl font-serif text-center font-bold text-neutral-800 dark:text-neutral-200">
         Proof of Work
       </div>
-      <div className="text-md md:text-xl font-serif text-center font-light tracking-wide text-gray-600 dark:text-neutral-300">
+      <div className="text-sm sm:text-md md:text-xl font-serif text-center font-light tracking-wide text-gray-600 dark:text-neutral-300">
         Houses that trusted us
       </div>
       <Carousel items={cards} />
@@ -49,25 +49,25 @@ export default function DummyContent({ images }: DummyContentProps) {
   return (
     <div className="bg-[#f5f5f7] p-2 md:p-10 rounded-3xl mb-4">
       {/* small images */}
-      <div className="flex gap-x-6 flex-wrap">
+      <div className="flex gap-x-3 sm:gap-x-6 flex-wrap">
         {images.map((src, index) => (
           <img
             key={index}
             src={src}
             alt={`thumbnail-${index}`}
             onClick={() => setActiveImage(src)}
-            className={`h-20 w-20 object-cover rounded-md cursor-pointer hover:scale-105 transition-transform duration-200 ${
+            className={`h-14 w-14 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer hover:scale-105 transition-transform duration-200 ${
               activeImage === src ? "ring-2 ring-black" : ""
             }`}
           />
         ))}
-        <div className="flex justify-center items-center text-xl ml-4 font-medium text-gray-600">
+        <div className="flex justify-center items-center text-sm sm:text-xl ml-2 sm:ml-4 font-medium text-gray-600">
           Click to view
         </div>
       </div>
 
       {/* zoomed-in */}
-      <div className="w-full h-full flex justify-center items-center mt-8">
+      <div className="w-full h-full flex justify-center items-center mt-6 sm:mt-8">
         <div
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovered(true)}
@@ -75,7 +75,7 @@ export default function DummyContent({ images }: DummyContentProps) {
             setIsHovered(false);
             setTransformOrigin("center");
           }}
-          className="flex justify-center items-center h-[500px] w-full max-w-4xl bg-white rounded-md overflow-hidden transition-all duration-300"
+          className="flex justify-center items-center h-[260px] sm:h-[350px] md:h-[500px] w-full max-w-4xl bg-white rounded-md overflow-hidden transition-all duration-300"
         >
           {activeImage && (
             <img

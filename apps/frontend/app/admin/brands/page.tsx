@@ -7,6 +7,7 @@ import axios from "axios";
 import Link from "next/link";
 import { IconTrash, IconArrowLeft } from "@tabler/icons-react";
 import { GET_BRANDS_URL, UPSERT_BRAND_URL, REMOVE_BRAND_URL } from "@/routes/routes";
+import ImageUploadInput from "@/Components/ui/ImageUploadInput";
 
 interface Brand { id: number; name: string; about: string; image?: string }
 
@@ -68,14 +69,14 @@ export default function ManageBrands() {
 
     return (
         <div className="min-h-screen bg-[#F9FAF8]">
-            <div className="bg-white border-b border-[#E5E7EB] px-8 py-4 flex items-center gap-4">
+            <div className="bg-white border-b border-[#E5E7EB] px-4 sm:px-8 py-4 flex items-center gap-4">
                 <Link href="/admin/dashboard" className="text-[#6D7278] hover:text-[#3D5A40] transition-colors">
                     <IconArrowLeft size={20} />
                 </Link>
-                <h1 className="text-xl font-bold text-[#3D5A40]">Manage Brands</h1>
+                <h1 className="text-lg sm:text-xl font-bold text-[#3D5A40]">Manage Brands</h1>
             </div>
 
-            <div className="max-w-2xl mx-auto px-8 py-10 flex flex-col gap-8">
+            <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-10 flex flex-col gap-8">
                 {/* Add form */}
                 <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6">
                     <h2 className="font-semibold text-[#3D5A40] text-lg mb-4">Add Brand</h2>
@@ -86,8 +87,7 @@ export default function ManageBrands() {
                             className="border border-[#D1D5DB] rounded-full px-5 py-2.5 text-sm text-[#3D5A40] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6DA165]" />
                         <textarea value={form.description} onChange={set("description")} placeholder="Full description (optional)" rows={3}
                             className="border border-[#D1D5DB] rounded-2xl px-5 py-2.5 text-sm text-[#3D5A40] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6DA165] resize-none" />
-                        <input type="text" value={form.image} onChange={set("image")} placeholder="Image URL (optional)"
-                            className="border border-[#D1D5DB] rounded-full px-5 py-2.5 text-sm text-[#3D5A40] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6DA165]" />
+                        <ImageUploadInput value={form.image} onChange={(url) => setForm((f) => ({ ...f, image: url }))} />
                         {error && <p className="text-red-500 text-sm">{error}</p>}
                         <button type="submit" disabled={loading}
                             className="self-end bg-[#6DA165] text-white px-8 py-2.5 rounded-full text-sm font-semibold hover:bg-[#5a914e] transition-colors disabled:opacity-60">
@@ -104,12 +104,12 @@ export default function ManageBrands() {
                         : (
                             <ul className="flex flex-col gap-2">
                                 {brands.map((b) => (
-                                    <li key={b.id} className="flex justify-between items-start border border-[#E5E7EB] rounded-xl px-4 py-3">
-                                        <div>
-                                            <p className="text-[#3D5A40] font-semibold">{b.name}</p>
-                                            <p className="text-[#6D7278] text-xs mt-0.5">{b.about}</p>
+                                    <li key={b.id} className="flex justify-between items-start gap-2 border border-[#E5E7EB] rounded-xl px-3 sm:px-4 py-3">
+                                        <div className="min-w-0">
+                                            <p className="text-[#3D5A40] font-semibold break-words">{b.name}</p>
+                                            <p className="text-[#6D7278] text-xs mt-0.5 break-words">{b.about}</p>
                                         </div>
-                                        <button onClick={() => handleDelete(b.id)} className="text-red-400 hover:text-red-600 transition-colors mt-0.5">
+                                        <button onClick={() => handleDelete(b.id)} className="text-red-400 hover:text-red-600 transition-colors mt-0.5 flex-shrink-0">
                                             <IconTrash size={18} />
                                         </button>
                                     </li>

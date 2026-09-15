@@ -6,7 +6,7 @@ export default function ButtonArea() {
         console.log("handle click")
     }
 
-    return <div className="">
+    return <div className="w-full flex justify-center sm:justify-start">
         <Button text="Submit" onClick={handleClick} />
     </div>
 }

@@ -8,6 +8,7 @@ import { ArrowRight, Plus, Pencil } from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
 import EditPanel, { FieldInput, FieldLabel } from "@/Components/admin/EditPanel";
+import ImageUploadInput from "@/Components/ui/ImageUploadInput";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { GET_TAGS_URL, UPSERT_TAG_URL } from "@/routes/routes";
 
@@ -165,8 +166,8 @@ export default function HomeGenre() {
                                 {addError && <p className="text-xs text-red-500 mt-1">{addError}</p>}
                             </div>
                             <div>
-                                <FieldLabel>Preview Image URL</FieldLabel>
-                                <FieldInput value={newImage} onChange={setNewImage} placeholder="https://..." />
+                                <FieldLabel>Preview Image</FieldLabel>
+                                <ImageUploadInput value={newImage} onChange={setNewImage} />
                             </div>
                             <p className="text-xs text-neutral-400">Genre appears as a tag on the home page and in search filters.</p>
                         </>
@@ -177,8 +178,8 @@ export default function HomeGenre() {
                                 <FieldInput value={editName} onChange={setEditName} placeholder="Genre name" />
                             </div>
                             <div>
-                                <FieldLabel>Preview Image URL</FieldLabel>
-                                <FieldInput value={editImage} onChange={setEditImage} placeholder="https://..." />
+                                <FieldLabel>Preview Image</FieldLabel>
+                                <ImageUploadInput value={editImage} onChange={setEditImage} />
                             </div>
                             <p className="text-xs text-neutral-400">Changes apply everywhere this genre is shown.</p>
                         </>

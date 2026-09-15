@@ -82,7 +82,7 @@ const BrandCard: React.FC<{ brand: Brand }> = ({ brand }) => {
     return (
         <Link
             href={`/inventory/${brand.slug}`}
-            className="group relative flex-shrink-0 w-[160px] h-[220px] bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100"
+            className="group relative flex-shrink-0 w-[130px] h-[180px] sm:w-[160px] sm:h-[220px] bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100"
         >
 
             {/* Image area */}
@@ -121,14 +121,14 @@ const Brands: React.FC<BrandsProps> = ({ brands = mockBrands, className = "" }) 
 
     return (
         <section className={`w-full flex flex-col ${className}`}>
-            <div className="px-6 py-10">
-                <h1 className="text-5xl font-bold mb-4 text-center font-serif">Brands</h1>
-                <p className="text-center text-gray-600 mb-8 font-serif text-[20px]">Discover designs from the most prestigious design houses</p>
+            <div className="px-4 sm:px-6 py-8 sm:py-10">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center font-serif">Brands</h1>
+                <p className="text-center text-gray-600 mb-8 font-serif text-base sm:text-[20px] px-2">Discover designs from the most prestigious design houses</p>
 
                 <div className="relative w-full">
                     <div
                         ref={scrollRef}
-                        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-4 pb-4"
+                        className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-2 sm:px-4 pb-4"
                     >
 
                         <style jsx>{`
@@ -143,16 +143,16 @@ const Brands: React.FC<BrandsProps> = ({ brands = mockBrands, className = "" }) 
                     </div>
 
                     {/* Arrow Controls Below */}
-                    <div className="flex justify-center gap-6 mt-6">
+                    <div className="flex justify-center gap-4 sm:gap-6 mt-6">
                         <button
                             onClick={() => scroll("left")}
-                            className="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
+                            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
                         >
                             <ChevronLeft />
                         </button>
                         <button
                             onClick={() => scroll("right")}
-                            className="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
+                            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
                         >
                             <ChevronRight />
                         </button>

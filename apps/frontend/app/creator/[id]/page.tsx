@@ -23,12 +23,12 @@ export default function UserWork() {
         </div>
 
         {/* Main Content */}
-        <div className="h-full w-full md:w-[80%] flex flex-col gap-y-10 px-6">
+        <div className="h-full w-full md:w-[80%] flex flex-col gap-y-6 sm:gap-y-10 px-4 sm:px-6">
           <main className="w-full">
             {/* Top Section */}
-            <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 mb-16">
+            <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-6 sm:gap-8 mb-10 sm:mb-16">
               {/* Profile Image */}
-              <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-gray-300 shadow-md">
+              <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-gray-300 shadow-md flex-shrink-0">
                 <img
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=3540&q=80"
                   alt="Profile"
@@ -40,16 +40,16 @@ export default function UserWork() {
 
               {/* Details */}
               <div className="flex flex-col gap-2 text-center md:text-left">
-                <h1 className="text-3xl font-bold text-gray-800">Nayan Suman</h1>
-                <h2 className="text-xl text-blue-600 font-medium">Senior Designer</h2>
-                <p className="text-gray-600 max-w-xl">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Nayan Suman</h1>
+                <h2 className="text-lg sm:text-xl text-blue-600 font-medium">Senior Designer</h2>
+                <p className="text-gray-600 max-w-xl text-sm sm:text-base">
                   Passionate about building interactive interior wallpapers with a traditional touch. Always learning and creating.
                 </p>
               </div>
             </section>
 
             {/* Works Section */}
-            <section className="max-w-7xl mx-auto grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <section className="max-w-7xl mx-auto grid gap-6 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {works.map((work) => (
                 <div
                   key={work.id}

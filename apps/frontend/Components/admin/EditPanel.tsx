@@ -46,7 +46,7 @@ export default function EditPanel({ title, isOpen, onOpen, onClose, onSave, savi
                 className={`fixed top-0 right-0 z-[201] h-full w-full sm:w-[380px] bg-white shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100">
+                <div className="flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 border-b border-neutral-100">
                     <h2 className="font-semibold text-[#3D5A40] text-base">{title}</h2>
                     <button onClick={onClose} className="text-neutral-400 hover:text-neutral-700 transition-colors">
                         <IconX size={20} />
@@ -54,12 +54,12 @@ export default function EditPanel({ title, isOpen, onOpen, onClose, onSave, savi
                 </div>
 
                 {/* Scrollable fields */}
-                <div className="flex-1 overflow-y-auto px-6 py-5 flex flex-col gap-4">
+                <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-5 flex flex-col gap-4">
                     {children}
                 </div>
 
                 {/* Footer */}
-                <div className="px-6 py-4 border-t border-neutral-100 flex gap-3">
+                <div className="px-4 sm:px-6 py-4 border-t border-neutral-100 flex gap-3">
                     <button
                         onClick={onClose}
                         className="flex-1 py-2.5 rounded-full border border-neutral-200 text-neutral-600 text-sm font-medium hover:bg-neutral-50 transition-colors"
